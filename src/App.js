@@ -1,25 +1,49 @@
 import logo from './logo.svg';
 import './App.css';
 
+const formFields = [
+  'Movie Title',
+  'Release Data',
+  'Movie Rating',
+  'Genre',
+  'Studio Email',
+].map(label => ({
+  label,
+  name: toSnake(label),
+}));
+
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MovieForm
+        fields={formFields}
+      />
     </div>
   );
+}
+
+function MovieForm({fields}) {
+  console.log(fields);
+  return (
+    <div className="Form">
+      <form>
+        {fields.map(({ label, name }) => (
+          <label key={name}>
+            {label}
+            <input type="text" name={name}/>
+          </label>
+        ))}
+        <label>
+          <input type="submit" value="Save"></input>
+        </label>
+      </form>
+    </div>
+
+  );
+}
+
+function toSnake(text) {
+  return text.toLowerCase().replace(' ','_');
 }
 
 export default App;

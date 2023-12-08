@@ -13,6 +13,23 @@
   }
 }
 
+label {
+  display: block;
+  /* background: red; */
+  display: flex;
+  width: 400px;
+  margin: 6px;
+}
+label > input {
+  box-sizing: border-box;
+  margin-left: auto;
+  width: 200px;
+}
+
+label > input[type=submit] {
+  margin-top: 30px;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

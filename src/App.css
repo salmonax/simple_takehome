@@ -1,5 +1,8 @@
 .App {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
 }
 
 .App-logo {
@@ -20,7 +23,7 @@ label {
   width: 400px;
   margin: 6px;
 }
-label > input {
+label > input, label > select {
   box-sizing: border-box;
   margin-left: auto;
   width: 200px;
@@ -43,6 +46,32 @@ label > input[type=submit] {
 
 .App-link {
   color: #61dafb;
+}
+
+.movie-form {
+  margin-top: 10px;
+  width: 500px;
+  border: 1px solid black;
+}
+
+hr {
+  width: 800px;
+}
+
+.saved-movies .row {
+  display: flex;
+  width: 700px;
+}
+.saved-movies .heading {
+  font-weight: bold;
+}
+
+.saved-movies .row > div {
+  flex-shrink: 0;
+  width: 170px;
+}
+.saved-movies .row > div:nth-of-type(3), .saved-movies .row > div:nth-of-type(4) {
+  width: 90px;
 }
 
 @keyframes App-logo-spin {

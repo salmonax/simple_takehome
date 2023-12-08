@@ -5,17 +5,6 @@
   align-items: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 label {
   display: block;
   /* background: red; */
@@ -31,21 +20,6 @@ label > input, label > select {
 
 label > input[type=submit] {
   margin-top: 30px;
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
 }
 
 .movie-form {
@@ -72,13 +46,4 @@ hr {
 }
 .saved-movies .row > div:nth-of-type(3), .saved-movies .row > div:nth-of-type(4) {
   width: 90px;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }

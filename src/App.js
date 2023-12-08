@@ -32,9 +32,9 @@ const fieldModifiers = {
   movie_rating: {
     validator: (n) => {
       const value = parseFloat(n);
-      return !isNaN(value) && value > 0 && value < 10;
+      return !isNaN(value) && value >= 0 && value <= 10;
     },
-    formatter: (n) => +n.toFixed(1),
+    formatter: (n) => +parseFloat(n).toFixed(1), // one decimal place, but only if non-zero
     alert: 'Please enter a value for Movie Rating between 0 and 10!'
   },
 };
@@ -68,9 +68,7 @@ function MovieForm({fields, addMovie}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const newMovie = formToObject(e.target);
-    const isValid = validateAndNotify(newMovie);
-    if (!isValid) {
-      console.log('fail!')
+    if (!validateAndNotify(newMovie)) {
       return;
     }
     addMovie(newMovie);
@@ -90,7 +88,7 @@ function MovieForm({fields, addMovie}) {
                     <option key={option} value={option}>{option}</option>
                   ))}
                 </select> :
-                <input type={mod && mod.type || "text"} name={name}/>
+                <input type={mod && mod.type || "text"} name={name} onInput={n => console.log(n)}/>
               }
             </label>
           );
@@ -130,7 +128,7 @@ function SavedMovies({ movies }) {
   )
 }
 
-function validateAndNotify(movie, fn = alert, _mod = fieldModifiers) {
+function validateAndNotify(movie, saved, fn = alert, _mod = fieldModifiers) {
   const msg = 'Please fill out all fields before submitting!';
   if (!Object.values(movie).every(n => n !== '')) {
     fn(msg);
@@ -149,14 +147,13 @@ function validateAndNotify(movie, fn = alert, _mod = fieldModifiers) {
     }
     // If there's a validator, use the alert message or the default.
     if (!_mod[field].validator(movie[field])) {
-      console.log('what?')
       fn(_mod[field].alert || msg);
       return false;
     }
+    // Validator succeeded
     return true;
   });
 }
-
 function formToObject(form) {
   const formData = new FormData(form);
   const newMovie = {};
